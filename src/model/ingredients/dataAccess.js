@@ -1,12 +1,33 @@
+import { async } from "regenerator-runtime";
 import IngredItem from "./index.js";
 
 export default class DataAccess {
+  //getting collection of ingredients 
+  static getIngredCollection(data) {
+    return new Promise(async(resolve, reject)=>{
+      IngredItem.find({
+        isActive: {
+          $eq: true
+        },
+      },
+      (err, foundIngredsList)=>{
+        if(err){
+          console.error(err);
+          reject(err);
+        }
+        resolve(foundIngredsList)
+      })
+    });
+  }
+
   //save new ingredient
   static saveIngred(data) {
     return new Promise(async (resolve, reject) => {
       const newIngredItem = new IngredItem({
+        timestamp: new Date(),
         name: data.name,
         type: data.type,
+        isalive: data.isAlive
       });
       newIngredItem.save((err) => {
         if (err) {

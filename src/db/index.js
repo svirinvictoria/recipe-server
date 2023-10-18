@@ -5,11 +5,11 @@ import mongoose from "mongoose";
 export default()=>{
     let dbConnector = null;
 
-    const connectionString = "mongodb+srv://vikipot_user:Test1234@cluster0.vspbpp5.mongodb.net/test";
+    const connectionString = "mongodb+srv://vikiport_user:E2rb88n35IpDPche@cluster0.qq9rpka.mongodb.net/vikirecipe";
     mongoose.set('strictQuery', true);
     mongoose.connect(connectionString, function(err, database){
         if(err){
-            console.log(err);
+            console.error(err);
             process.exit(1);
         }
         dbConnector = database;

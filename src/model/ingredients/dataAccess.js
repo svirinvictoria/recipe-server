@@ -5,10 +5,12 @@ export default class DataAccess {
   //getting collection of ingredients 
   static getIngredCollection(data) {
     return new Promise(async(resolve, reject)=>{
-      IngredItem.find({
-        isActive: {
-          $eq: true
-        },
+      IngredItem.find(
+        
+        {
+        // isActive: {
+        //   $eq: true
+        // },
       },
       (err, foundIngredsList)=>{
         if(err){
@@ -22,12 +24,11 @@ export default class DataAccess {
 
   //save new ingredient
   static saveIngred(data) {
-    return new Promise(async (resolve, reject) => {
+    return new Promise (async (resolve, reject) => {
       const newIngredItem = new IngredItem({
-        timestamp: new Date(),
         name: data.name,
         type: data.type,
-        isalive: data.isAlive
+        isActive: data.isActive
       });
       newIngredItem.save((err) => {
         if (err) {
@@ -39,19 +40,19 @@ export default class DataAccess {
     });
   }
 
-  //find ingredient by name
-  static getIngredByName(name) {
-    return new Promise(async (resolve, reject) => {
-      ingredItem.findOne(
-        { name: { $regex: name, $options: "i" } },
-        (err, singleIngred) => {
-          if (err) {
-            console.log(err);
-            reject(err);
-          }
-          resolve(singleIngred);
-        }
-      );
-    });
-  }
+  // //find ingredient by name
+  // static getIngredByName(name) {
+  //   return new Promise(async (resolve, reject) => {
+  //     ingredItem.findOne(
+  //       { name: { $regex: name, $options: "i" } },
+  //       (err, singleIngred) => {
+  //         if (err) {
+  //           console.log(err);
+  //           reject(err);
+  //         }
+  //         resolve(singleIngred);
+  //       }
+  //     );
+  //   });
+  // }
 }

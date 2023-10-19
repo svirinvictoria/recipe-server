@@ -6,6 +6,7 @@ export default()=>{
     let dbConnector = null;
 
     const connectionString = "mongodb+srv://vikiport_user:E2rb88n35IpDPche@cluster0.qq9rpka.mongodb.net/vikirecipe";
+    
     mongoose.set('strictQuery', true);
     mongoose.connect(connectionString, function(err, database){
         if(err){

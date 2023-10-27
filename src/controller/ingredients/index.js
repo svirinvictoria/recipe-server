@@ -17,7 +17,7 @@ export default ({}) => {
     try {
       //console.log("GET");
       const result = await logic.getIngredList();
-      console.log(result);//HERE!!!
+      //console.log(result);
       res.status(200).json({ 
         result 
       });
@@ -31,7 +31,7 @@ export default ({}) => {
 
   //sending ingredient to database
   api.post("/saveingred", async (req, res) => {
-    console.log("POST");
+    //console.log("POST");
     const data = req.body;
     const result = await logic.saveIngred(data);
     

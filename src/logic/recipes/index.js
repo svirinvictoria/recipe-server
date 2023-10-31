@@ -17,7 +17,8 @@ const getChosenRecipes =(param)=>{
     return new Promise (async (resolve, reject)=>{
         try{
             const recipesByCategory = await dataAccess.getChosenRecipes(param);
-            resolve(recipesByCategory)
+           
+            resolve(recipesByCategory) 
         } catch (err){
             console.error(err);
             reject(err)

@@ -2,6 +2,7 @@ import { Router } from "express";
 import "regenerator-runtime/runtime";
 
 import logic from "../../logic/recipes/index";
+import { async } from "regenerator-runtime";
 
 export default ({}) => {
   const api = Router();
@@ -16,14 +17,11 @@ export default ({}) => {
   });
 
   //bringing recipe list from the DB
-  api.get("/recipelist/:param", async (req, res) => {
-    // console.log("RECIPE");
+  api.get("/recipelist/:category", async (req, res) => {
+    console.log(req.params);
     try {
-      const result = await logic.getChosenRecipes(req.params.param);
-    //   console.log(result);
-      res.status(200).json({
-        result,
-      });
+      const result = await logic.getChosenRecipes(req.params.category);
+      res.status(200).json({result});
     } catch (error) {
       console.error(error);
       res.status(500).json({
@@ -31,6 +29,22 @@ export default ({}) => {
       });
     }
   });
+
+  
+  //bringing categories and recipes together in one object
+  api.get("/getlists", async(req, res)=>{
+    try{
+      const result = await logic.getRecipesAndCategs()
+      res.status(200).json({result});
+    }catch (error) {
+      console.error(error);
+      res.status(500).json({
+        message: "Failed to load all the lists",
+      });
+    }
+    
+
+  })
 
   return api;
 };

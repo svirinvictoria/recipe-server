@@ -1,6 +1,6 @@
 import dataAccess from "../../model/categories/dataAccess";
 
-//getting list of ingredients
+//getting list of categories
 const getCategoriesList = () => {
   return new Promise(async (resolve, reject) => {
     try {

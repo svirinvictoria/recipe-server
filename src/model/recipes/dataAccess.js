@@ -32,11 +32,11 @@ export default class dataAccess {
   }
 
   //getting collection of recipes by category
-  static getChosenRecipes(categories) {
+  static getChosenRecipes(categoryName) {
     return new Promise(async (resolve, reject) => {
       RecipeItem.find(
         {
-          categories: { $regex: categories, $options: "i" },
+          categories: { $regex: categoryName, $options: "i" },
         },
         (err, chosenRecipesList) => {
           if (err) {
@@ -48,4 +48,6 @@ export default class dataAccess {
       );
     });
   }
+
+ 
 }
